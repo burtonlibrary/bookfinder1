@@ -1,0 +1,159 @@
+{
+  "_comment": "Curated series-order data for popular series, used as a fallback/override when MARC cataloging data is missing or inconsistent. Matched by checking if the series name AND a book-title keyword both appear (as substrings) in a catalog title. Add more series here any time a real gap shows up — this file is meant to grow.",
+
+  "harry potter": {
+    "sorcerer's stone": 1, "philosopher's stone": 1,
+    "chamber of secrets": 2,
+    "prisoner of azkaban": 3,
+    "goblet of fire": 4,
+    "order of the phoenix": 5,
+    "half-blood prince": 6,
+    "deathly hallows": 7
+  },
+  "percy jackson": {
+    "lightning thief": 1,
+    "sea of monsters": 2,
+    "titan's curse": 3,
+    "battle of the labyrinth": 4,
+    "last olympian": 5
+  },
+  "heroes of olympus": {
+    "lost hero": 1,
+    "son of neptune": 2,
+    "mark of athena": 3,
+    "house of hades": 4,
+    "blood of olympus": 5
+  },
+  "hunger games": {
+    "the hunger games": 1,
+    "catching fire": 2,
+    "mockingjay": 3
+  },
+  "divergent": {
+    "divergent": 1,
+    "insurgent": 2,
+    "allegiant": 3
+  },
+  "maze runner": {
+    "the maze runner": 1,
+    "scorch trials": 2,
+    "death cure": 3,
+    "kill order": 0
+  },
+  "series of unfortunate events": {
+    "bad beginning": 1,
+    "reptile room": 2,
+    "wide window": 3,
+    "miserable mill": 4,
+    "austere academy": 5,
+    "ersatz elevator": 6,
+    "vile village": 7,
+    "hostile hospital": 8,
+    "carnivorous carnival": 9,
+    "slippery slope": 10,
+    "grim grotto": 11,
+    "penultimate peril": 12,
+    "the end": 13
+  },
+  "six of crows": {
+    "six of crows": 1,
+    "crooked kingdom": 2
+  },
+  "throne of glass": {
+    "throne of glass": 1,
+    "crown of midnight": 2,
+    "heir of fire": 3,
+    "queen of shadows": 4,
+    "empire of storms": 5,
+    "tower of dawn": 6,
+    "kingdom of ash": 7
+  },
+  "mortal instruments": {
+    "city of bones": 1,
+    "city of ashes": 2,
+    "city of glass": 3,
+    "city of fallen angels": 4,
+    "city of lost souls": 5,
+    "city of heavenly fire": 6
+  },
+  "chronicles of narnia": {
+    "magician's nephew": 1,
+    "lion, the witch and the wardrobe": 2,
+    "horse and his boy": 3,
+    "prince caspian": 4,
+    "voyage of the dawn treader": 5,
+    "silver chair": 6,
+    "last battle": 7
+  },
+  "lord of the rings": {
+    "fellowship of the ring": 1,
+    "two towers": 2,
+    "return of the king": 3
+  },
+  "his dark materials": {
+    "golden compass": 1, "northern lights": 1,
+    "subtle knife": 2,
+    "amber spyglass": 3
+  },
+  "wings of fire": {
+    "dragonet prophecy": 1,
+    "lost heir": 2,
+    "hidden kingdom": 3,
+    "dark secret": 4,
+    "brightest night": 5
+  },
+  "keeper of the lost cities": {
+    "keeper of the lost cities": 1,
+    "exile": 2,
+    "everblaze": 3,
+    "neverseen": 4,
+    "lodestar": 5
+  },
+  "diary of a wimpy kid": {
+    "diary of a wimpy kid": 1,
+    "rodrick rules": 2,
+    "the last straw": 3
+  },
+  "inheritance cycle": {
+    "eragon": 1,
+    "eldest": 2,
+    "brisingr": 3,
+    "inheritance": 4
+  },
+  "arc of a scythe": {
+    "scythe": 1,
+    "thunderhead": 2,
+    "the toll": 3
+  },
+  "shatter me": {
+    "shatter me": 1,
+    "unravel me": 2,
+    "ignite me": 3
+  },
+  "miss peregrine": {
+    "home for peculiar children": 1,
+    "hollow city": 2,
+    "library of souls": 3
+  },
+  "uglies": {
+    "uglies": 1,
+    "pretties": 2,
+    "specials": 3
+  },
+  "twilight": {
+    "twilight": 1,
+    "new moon": 2,
+    "eclipse": 3,
+    "breaking dawn": 4
+  },
+  "renegades": {
+    "renegades": 1,
+    "archenemies": 2,
+    "supernova": 3
+  },
+  "the selection": {
+    "the selection": 1,
+    "the elite": 2,
+    "the one": 3
+  }
+}
