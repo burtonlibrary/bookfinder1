@@ -405,6 +405,21 @@
   function search(rawQuery, CATALOG, MEDIA_OVERRIDES){
     const found = expandQuery(rawQuery);
 
+    // Real bug found via testing: "funny and quick" is two separate mood
+    // words the student explicitly typed together, but scoring treated
+    // every found tag as an OR — a book matching only "quick read" still
+    // scored above zero and could crowd into results below the true
+    // funny+quick matches, even though it's the opposite of what the
+    // student asked for. Snapshot what the QUERY ITSELF asked for, before
+    // a reference book/media match below adds its OWN tags into `found` —
+    // those come from ONE external work's tag profile (a show can be both
+    // "sci-fi" and "horror" without any single book needing to be both),
+    // so they must stay OR'd, never forced into this AND requirement.
+    const queryOnlyFound = {
+      genres: new Set(found.genres), moods: new Set(found.moods),
+      themes: new Set(found.themes), protagonist: new Set(found.protagonist),
+    };
+
     const ref = extractReferencePhrase(rawQuery);
     let refBook = null;
     let refMedia = null;
@@ -494,7 +509,25 @@
     }
     pool = keepOnlyIfFirstVolumeAvailable(pool, CATALOG);
 
-    const hasHardFilter = !!(refBook || refMedia || pageFilter || lexileFilter || confidenceFilter || authorRegionFilter);
+    // AND, not OR, when the student's own query names 2+ tags in the SAME
+    // category ("funny AND quick", "fantasy heist", "female detective").
+    // A single matched tag stays permissive (scoring/ranking handles it),
+    // but once the query itself asks for a combination, a book missing
+    // half of it isn't a match — it just used to still score > 0 and rank
+    // in below the true matches, which is exactly backwards from what a
+    // multi-word descriptive query means.
+    const hasMultiTagFilter = ['genres', 'moods', 'themes', 'protagonist']
+      .some(cat => queryOnlyFound[cat].size >= 2);
+    if(hasMultiTagFilter){
+      pool = pool.filter(b => ['genres', 'moods', 'themes', 'protagonist'].every(cat => {
+        const required = queryOnlyFound[cat];
+        if(required.size < 2) return true; // not a multi-tag category, nothing to enforce here
+        const have = new Set((b[cat]||[]).map(s=>s.toLowerCase()));
+        return [...required].every(v => have.has(v.toLowerCase()));
+      }));
+    }
+
+    const hasHardFilter = !!(refBook || refMedia || pageFilter || lexileFilter || confidenceFilter || authorRegionFilter || hasMultiTagFilter);
     const scored = pool
       .map(b=>({book:b, score: (refBook || refMedia) ? scoreBook(b, found, rawQuery) + 0.01 : scoreBook(b, found, rawQuery)}))
       .filter(x=>x.score > 0 || hasHardFilter)
